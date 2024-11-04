@@ -49,9 +49,6 @@
         methods: {
           addToFavorites(character) {
             this.favoriteList.push(character)
-          },
-          incrementCount() {
-            this.count++
           }
         }
   }
@@ -60,9 +57,9 @@
 <template>
   <h2>Straw Hat Pirates</h2>
   <ol>
-    <li v-for="character in strawhats">
+    <li v-for="(character, index) in strawhats" :key="`character-${index}`">
       {{ character.name }} - {{ character.bounty }}
-      <button @click="addToFavorites(character.name)">
+      <button @click="addToFavorites(`${character.name} - ${character.bounty}`)">
         Favorite
       </button>
     </li>
@@ -70,6 +67,6 @@
 
   <h2>Favorite Straw Hat Pirates</h2>
   <ol>
-    <li v-for="favchar in favoriteList">{{ favchar }}</li>
+    <li v-for="(favchar, index) in favoriteList" :key="`favchar-${index}`">{{ favchar }}</li>
   </ol>
 </template>
